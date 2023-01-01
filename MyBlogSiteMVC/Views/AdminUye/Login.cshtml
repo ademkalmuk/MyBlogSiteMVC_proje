@@ -1,0 +1,64 @@
+﻿@model MyBlogSiteMVC.Models.Uye
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+
+                        <h2>Giriş Yap</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UyeMail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UyeMail, new { htmlAttributes = new { @class = "form-control", @type = "email", @required = "", @placeholder = "Email adresini giriniz." } })
+            @Html.ValidationMessageFor(model => model.UyeMail, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UyeSifre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UyeSifre, new { htmlAttributes = new { @class = "form-control", @required = "", @placeholder = "Şifre giriniz.", @type = "password" } })
+            @Html.ValidationMessageFor(model => model.UyeSifre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Giriş Yap" class="btn btn-outline-success" />
+        </div>
+    </div>
+
+    <div>
+        <div class="col-lg-12">
+
+            <span class="alert-danger">
+                @ViewBag.HataliGiris
+            </span>
+
+        </div>
+    </div>
+</div>
+}
+

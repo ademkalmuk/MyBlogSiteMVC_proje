@@ -1,0 +1,83 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<MyBlogSiteMVC.Models.Blog>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Anasayfa</h2>
+
+<p>
+    @Html.ActionLink("Blog Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Blog Başlığı
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.BlogIcerik)*@
+        </th>
+        <th>
+            Fotoğraf
+        </th>
+        <th>
+            Blog Okunma Sayısı
+        </th>
+        <th>
+            Bloğun Okunma Süresi
+        </th>
+        <th>
+            Yayınlama Tarihi
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogBaslik)
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.BlogIcerik )*@
+            </td>
+            <td>
+                <img class="img-responsive" width="100" src="@item.Foto" alt="Görsel Bulunamadı..." style="border-radius: 3px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogOkunmaSayisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogOkunmaSuresi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlogTarih)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.BlogID }) |
+                @Html.ActionLink("Detay", "Details", new { id = item.BlogID }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.BlogID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<link href="~/Content/PagedList.css" rel="stylesheet" />
+<div class="container">
+
+    <div class="col-md-8">
+
+        <div class="pagedList pagination-lg">
+
+            @Html.PagedListPager(Model, Page => Url.Action("index", new { Page }), PagedListRenderOptions.Classic)
+
+        </div>
+
+    </div>
+
+</div>

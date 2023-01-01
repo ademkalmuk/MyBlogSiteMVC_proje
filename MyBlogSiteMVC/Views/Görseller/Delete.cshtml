@@ -1,0 +1,47 @@
+﻿@model MyBlogSiteMVC.Models.Görseller
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div>
+    <h4>Silme İşlemi</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GörselBaslık)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GörselBaslık)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Görsel)
+        </dt>
+
+        <dd>
+            <img class="img-responsive" width="250" height="auto" src="@Model.Görsel" style="border:2px solid" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GörselYayınlanmaTarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GörselYayınlanmaTarih)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+            @Html.ActionLink("Geri Dön", "Index")
+        </div>
+    }
+</div>

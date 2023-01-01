@@ -1,0 +1,105 @@
+﻿@model MyBlogSiteMVC.Models.Blog
+@{
+    ViewBag.Title = "BlogDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Page Header -->
+<!-- End Of Page Header -->
+
+
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+
+                        <h2>@Model.BlogBaslik</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+<section class="blog-posts grid-system">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="blog-post">
+                                <div class="blog-thumb">
+                                    <img src="@Model.Foto" alt="">
+                                </div>
+                                <div class="down-content">
+
+                                    <a href="/Blog/BlogDetay/@Model.BlogID"><h4>@Model.BlogBaslik</h4></a>
+                                    <ul class="post-info">
+                                        <li><a href="#">Tarih: @Model.BlogTarih</a></li>
+                                        <li><a href="#">Okundu: @Model.BlogOkunmaSayisi</a></li>
+                                    </ul>
+                                    <p>
+                                        @Html.Raw(Model.BlogIcerik)
+                                    </p>
+                                    <div class="post-options">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <ul class="post-share">
+                                                    <li><i class="fa fa-share-alt"></i></li>
+                                                    <li><a href="#">Facebook</a>,</li>
+                                                    <li><a href="#"> Twitter</a>,</li>
+                                                    <li><a href="#"> Youtube</a>,</li>
+                                                    <li><a href="#"> Instagram</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sidebar-item recent-posts">
+                                <div class="sidebar-heading">
+                                    <a href="/Blog/Index"><h2>Diğer Blog Yazıları</h2></a>
+                                    
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/Content/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.js"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+
+                url: "/Blog/OkunmaArttir",
+                data: { blogid:@Model.BlogID},
+                type: "POST",
+
+            });
+        });
+
+</script>
+

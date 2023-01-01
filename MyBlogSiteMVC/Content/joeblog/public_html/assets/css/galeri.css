@@ -1,0 +1,13 @@
+.galeri{
+    margin:20px;
+}
+.project{
+    display:inline;
+    margin-left:10px;
+    width:25%;
+
+}
+.project__image{
+    object-fit:cover;
+    
+}

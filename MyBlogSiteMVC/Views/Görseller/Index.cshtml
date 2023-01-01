@@ -1,0 +1,50 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<MyBlogSiteMVC.Models.Görseller>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Galeri</h2>
+
+<p>
+    @Html.ActionLink("Yeni Fotograf Ekle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Görselin Başlığı
+        </th>
+        <th>
+            Fotoğraf
+        </th>
+        <th>
+            Yayınlanma Tarihi
+        </th>
+       
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GörselBaslık)
+            </td>
+            <td>
+                <img class="img-responsive" width="100" src="@item.Görsel" alt="Görsel Bulunamadı..." style="border-radius: 3px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GörselYayınlanmaTarih)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "Edit", new { id = item.GörselID }) |
+                @Html.ActionLink("Detay", "Details", new { id = item.GörselID }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.GörselID })
+            </td>
+        </tr>
+    }
+
+</table>

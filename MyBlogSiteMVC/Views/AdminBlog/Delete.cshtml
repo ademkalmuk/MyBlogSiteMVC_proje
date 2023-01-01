@@ -1,0 +1,73 @@
+﻿@model MyBlogSiteMVC.Models.Blog
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2></h2>
+
+<h2>Sİlmek İstediğinize Emin Misiniz?</h2>
+<div>
+    <h3>Silinecek Blog Yazısı</h3>
+    <hr />
+    <dl class="dl-horizontal m-1">
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogIcerik)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.BlogIcerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+
+        <dd>
+            <img class="img-responsive" width="250" height="auto" src="@Model.Foto" style="border:2px solid" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogOkunmaSayisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogOkunmaSayisi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogOkunmaSuresi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogOkunmaSuresi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogTarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogTarih)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger" /> |
+            @Html.ActionLink("Geri Dön", "Index")
+        </div>
+    }
+</div>
